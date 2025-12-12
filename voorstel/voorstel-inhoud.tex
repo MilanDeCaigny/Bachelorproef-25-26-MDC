@@ -1,84 +1,112 @@
-%---------- Inleiding ---------------------------------------------------------
-
-% TODO: Is dit voorstel gebaseerd op een paper van Research Methods die je
-% vorig jaar hebt ingediend? Heb je daarbij eventueel samengewerkt met een
-% andere student?
-% Zo ja, haal dan de tekst hieronder uit commentaar en pas aan.
-
-%\paragraph{Opmerking}
-
-% Dit voorstel is gebaseerd op het onderzoeksvoorstel dat werd geschreven in het
-% kader van het vak Research Methods dat ik (vorig/dit) academiejaar heb
-% uitgewerkt (met medesturent VOORNAAM NAAM als mede-auteur).
-% 
+    \tableofcontents
 
 \section{Inleiding}%
 \label{sec:inleiding}
 
-Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
+Moderne havenbedrijven zijn sterk afhankelijk van een complex IT-landschap dat de operationele processen zou moeten ondersteunen, zoals goederenstromen, transportplanning en magazijnbeheer. Binnen dit landschap spelen tientallen componenten een sterke rol in het realiseren van efficiënte en tijdige operaties, waaronder WMS~\autocite{Matthias2025}, TMS~\autocite{SAPn.d.}  en infrastructuursystemen. Omdat er in dit tijdperk veel gedigitaliseerd is heeft elke IT-verstoring een directe impact op de prestaties van een haven bedrijf.
+In de praktijk blijkt dat dergelijke storingen vaak te laat gedetecteerd of niet opgelost worden. Een belangrijke oorzaak is dat het monitoren per systeem gebeurt, hierdoor wordt er geen geïntegreerd overzicht gemaakt over het end-to-end proces~\autocite{Shaikh2025}. Volgens een recent onderzoek naar monitoringsstrategieën kan end-to-end monitoring organisaties helpen om incidenten sneller te identificeren, begrijpen en verhelpen~\autocite{Mireles2024}. Dit onderstreept de nood aan een oplossing die verder gaat dan klassieke monitoringtools.
+Voor een dienstverlener in de haven vormt dit probleem meer dan een technische uitdaging: vertraagde detectie van incidenten leidt tot operationele vertragingen, hogere kosten en verminderde betrouwbaarheid richting klanten~\autocite{Shaikh2025}.  Het gebrek aan zichtbaarheid en alerting verhindert dat de IT-operationele teams storingen tijdig kunnen aanpakken. Daardoor is er een duidelijke behoefte aan een geïntegreerde monitoringsoplossing die het volledig plaatje in kaart brengt, proactief alarmeert en de stabiliteit verhoogt.
+Om hierop een antwoord te kunnen formuleren, worden de volgende deelvragen onderzocht. 
+De deelvragen zijn verdeeld over het probleemdomein, het oplossingsdomein en het evaluatiedomein, zoals vereist in het onderzoeksvoorstel.
 
-\begin{itemize}
-  \item kaderen thema
-  \item de doelgroep
-  \item de probleemstelling en (centrale) onderzoeksvraag
-  \item de onderzoeksdoelstelling
-\end{itemize}
+\textbf{Probleemdomein:}
+\begin{enumerate}
+    \item Welke specifieke IT-componenten zijn kritisch voor de drie belangrijkste end-to-end processen binnen een havenbedrijf?
+    \item Welke types incidenten hebben de grootste negatieve impact op operationele KPI’s?
+    \item Wat zijn de tekortkomingen van de huidige monitoringsmethodes in het bieden van overzicht, samenhang en proactieve signalering?
+\end{enumerate}    
+\textbf{Oplossingsdomein:}
+\begin{enumerate}\setcounter{enumi}{3}
+    \item Hoe moet een end-to-end monitoringsoplossing worden ontworpen zodat metrics, logs en traces efficiënt geïntegreerd kunnen worden?
+\end{enumerate}   
+Daarom is het doel van dit onderzoek om een ontwerp en implementatie van een end-to-end monitoringsoplossing te ontwikkelen die IT-operati\-onele teams in staat stelt storingen tijdig te detecteren in een proof-of-concept, de oorzaak snel te achterhalen en proactief maatregelen te nemen tegen deze storingen. Door een overzicht van kritieke IT-componenten te creëren en een alert-systeem in te zetten, heeft deze oplossing als doel de stabiliteit van havenbedrijven te verhogen, vertragingen te minimaliseren en de betrouwbaarheid naar de klant toe significant te verhogen.
 
-Denk er aan: een typische bachelorproef is \textit{toegepast onderzoek}, wat betekent dat je start vanuit een concrete probleemsituatie in bedrijfscontext, een \textbf{casus}. Het is belangrijk om je onderwerp goed af te bakenen: je gaat voor die \textit{ene specifieke probleemsituatie} op zoek naar een goede oplossing, op basis van de huidige kennis in het vakgebied.
-
-De doelgroep moet ook concreet en duidelijk zijn, dus geen algemene of vaag gedefinieerde groepen zoals \emph{bedrijven}, \emph{developers}, \emph{Vlamingen}, enz. Je richt je in elk geval op it-professionals, een bachelorproef is geen populariserende tekst. Eén specifiek bedrijf (die te maken hebben met een concrete probleemsituatie) is dus beter dan \emph{bedrijven} in het algemeen.
-
-Formuleer duidelijk de onderzoeksvraag! De begeleiders lezen nog steeds te veel voorstellen waarin we geen onderzoeksvraag terugvinden.
-
-Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat van je onderzoek, naast de uitgeschreven scriptie? Is het een proof-of-concept, een rapport met aanbevelingen, \ldots Met welk eindresultaat kan je je bachelorproef als een succes beschouwen?
-
-%---------- Stand van zaken ---------------------------------------------------
 
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
 
-Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
+\subsection{Monitoring in moderne havenbedrijven}
+De afgelopen jaren hebben havens een sterke digitalisering doorgemaakt: processen die vroeger handmatig verliepen zijn nu grotendeels ondersteund door systemen die kunnen plannen, coördineren en beslissingen nemen. Digitalisering wordt gezien als een voorwaarde om efficiency, flexibiliteit en voorspelbaarheid op een logistieke manier te verbeteren, een grote rol hierin is automatisatie. Automatisatie uit zich in vier domeinen: transport (robots), processen (RFID), besluitvorming (AI-gestuurde planning) en monitoring (IoT, real-time data). Met name dit laatste domein, procesmonitoring is cruciaal voor het realiseren van voorspelbaarheid en flexibiliteit. Hierbij worden digitale technologieën zoals IoT, Big Data en AI ingezet voor data-aggregatie en netwerkoptimalisatie. Maar dit brengt nieuwe operationele en cybersecurity gerelateerde risico’s met zich mee~\autocite{Rodrigue2024}.
 
-Je mag de titel van deze sectie ook aanpassen (literatuurstudie, stand van zaken, enz.). Zijn er al gelijkaardige onderzoeken gevoerd? Wat concluderen ze? Wat is het verschil met jouw onderzoek?
+\subsection{Traditionele monitoringsmethoden en hun beperkingen}
+In veel IT-omgevingen wordt nog steeds gewerkt met “traditionele monitoringmethoden”, elk systeem wordt afzonderlijk gecontroleerd. Dit wordt vaak omschreven als component-based monitoring of infrastructure monitoring, gericht op individuele elementen zoals servers, databases, netwerkapparatuur of specifieke applicaties. Hoewel deze aanpak problemen binnen één systeem kan detecteren, ontstaan er belangrijke tekortkomingen wanneer bedrijfsprocessen uit meerdere systemen bestaan.
+Een opmerkelijk nadeel van traditionele monitoring is dat monitoringtools los van elkaar opereren, zonder gedeelde contextuele inzichten. Door dit gebeuren ontstaat er een gefragmenteerd beeld van incidenten en ontbreekt inzicht in hoe problemen in het ene systeem grote gevolgen kan hebben op het andere systeem. Dit zorgt voor een “blind spot” omdat organisaties de alerts zien op individuele systemen maar niet begrijpen wat de impact op het hele systeem is of kan zijn~\autocite{Brooks2004}.
+Nog een probleem is dat klassieke monitoring geen rout-cause visibility biedt. Dat betekent dat teams vaak wel symptomen detecteren, maar dit niet kunnen herleiden naar waarom of hoe het incident ontstaan is~\autocite{Thalheim2017}. De schaalbaarheid speelt ook een rol in de beperkingen. Onderzoek toont aan dat veel bestaande monitoringsoplossingen, zowel commerciële als open-source, geen goede schaalbaarheid bieden. Dit heeft als gevolg dat het steeds moeilijker wordt om een representatief overzicht te behouden van het hele systeem. Oplossingen falen vaak in het bewaken van multi-tenant applicaties of componenten, wat resulteert in beperkte zichtbaarheid en minder betrouwbare incidentdetectie~\autocite{Andreolini2014}. Hierdoor zijn traditionele per-process monitoringsoplossingen onvoldoende voor complexe IT-landschappen waarin meerdere systemen en afhankelijkheden samenkomen.
 
-Verwijs bij elke introductie van een term of bewering over het domein naar de vakliteratuur, bijvoorbeeld~\autocite{Hykes2013}! Denk zeker goed na welke werken je refereert en waarom.
+\subsection{End-to-end monitoring}
+End-to-end monitoring richt zich op het bewaken van het hele traject in plaats van afzonderlijke componenten. Waar traditionele monitoringsmethoden enkel inzicht geven in individuele systemen, gaat end-to-end monitoring in het geheel bekijken hoe al deze systemen samenwerken binnen een bedrijfsproces~\autocite{Mireles2024}. Deze benadering maakt het mogelijk om zowel de prestaties van afzonderlijke applicaties als de onderlinge afhankelijkheden te volgen. Hierdoor kunnen afwijkingen sneller en accurater gedetecteerd worden. Door componenten zoals metrics, logs en traces te combineren, kan er een breder zicht op het volledig proces (A-Z) gecreëerd worden. Organisaties kunnen op deze manier sneller problemen signaleren, begrijpen en oplossen.
+Complexere systemen bestaan vaak uit vele onderling afhankelijke services, end-to-end observability wordt vooral gerealiseerd door “distributed tracing”. Individuele requests worden doorheen het volledige systeem gevolgd in combinatie met real-time logging, dit zorgt voor extra context en detail aan elke stap van het proces. Als je deze datasets gaat samenhangen ontstaat er een volledig beeld van hoe transacties door het hele proces lopen, wat er voor vertraging zorgt en waar het eventueel fout loopt. Dit is essentieel voor zowel nauwkeurige root-cause analyse als voor het verhogen van de betrouwbaarheid en stabiliteit van complexe IT-processen~\autocite{Saminathan2021}.
 
-Draag zorg voor correcte literatuurverwijzingen! Een bronvermelding hoort thuis \emph{binnen} de zin waar je je op die bron baseert, dus niet er buiten! Maak meteen een verwijzing als je gebruik maakt van een bron. Doe dit dus \emph{niet} aan het einde van een lange paragraaf. Baseer nooit teveel aansluitende tekst op eenzelfde bron.
+\subsection{Operationele impact & KPI’s}
+Om de effectiviteit van een end-to-end monitoringsoplossing te evalueren zijn er duidelijke KPI’s.
+Een belangrijke KPI is de Mean Time to Detect (MTTD), die geeft aan hoe snel een incident wordt opgemerkt. Een lagere MTTD verkleint de kans op verstoringen en voorkomt escalatie. Daarnaast is er Mean Time to Repair (MTTR). Dit meet hoe snel een incident na detectie wordt hersteld, dit draagt direct bij aan de continuïteit van kritieke processen~\autocite{Chaplin2025}. Ook is beschikbaarheid een cruciale indicator, een hoge beschikbaarheid verhoogt de betrouwbaarheid van services en minimaliseert operationele\\
+risico’s~\autocite{Raza2025}.
 
-Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle nodige info aanwezig is om de bron terug te vinden (zoals uitvoerig besproken in de lessen Research Methods).
+\subsection{Conclusie}
+Uit de literatuur blijkt dat moderne havenbedrijven sterk afhankelijk zijn van een gedigitaliseerd verbonden IT-landschap waarin systemen zoals WMS en TMS gezamenlijk instaan voor de operationele aansturing. Digitalisatie verhoogt de efficiëntie en voorspelbaarheid maar het brengt ook risico’s met zich mee. Een verstoring bij één onderdeel kan een keteneffect veroorzaken die de operatie vertraagt. Traditionele monitoring schiet hierin tekort omdat het geen overzicht heeft over het hele plaatje. Beperkte schaalbaarheid en onvoldoende inzicht in onderlinge afhankelijkheden. End-to-end monitoring zorgt bij dit probleem voor een oplossing, het bewaakt het volledige plaatje en kan sneller afwijkingen detecteren. KPI’s zoals MTTD, MTTR en beschikbaarheid worden hierdoor beter beheerst.
 
-% Voor literatuurverwijzingen zijn er twee belangrijke commando's:
-% \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
-%   geen onderdeel is van de zin.
-% \textcite{KEY} => Auteur (jaartal)  Gebruik dit als de auteursnaam wel een
-%   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
-%   ...'')
 
-Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
-
-%---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+\FloatBarrier
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\linewidth, keepaspectratio]{gantt.png}
+    \caption{Gantt diagram met de verschillende fasen van het onderzoek.}
+    \label{fig:gantt}
+\end{figure}
 
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+Deze methodologie beschrijft de stappen die worden gemaakt om te onderzoeken in welke mate een end-to-end monitoringsoplossing kan bijdragen aan snellere incidentdetectie en hogere stabiliteit binnen het IT-landschap in de haven. 
+\subsection{Literatuurstudie}
+In de eerste fase wordt een literatuurstudie uitgevoerd naar bestaande monitoringsstrategieën, met focus op de tekortkomingen van traditionele monitoring en de voordelen van end-to-end monitoring. Er wordt onderzocht welke KPI’s algemeen gebruikt worden om monitoringsprestaties te evalueren (MTTD, MTTR en availability) en hoe deze kunnen worden toegepast in complexe, onderling afhankelijke IT-omgevingen zoals in havensystemen.
 
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+\textbf{Deliverable:} Synthese van de theoretische basis, inclusief definitie van KPI’s en argumentatie voor end-to-end monitoring als oplossing.
+\textbf{Tijdsschatting:} 6 weken, 1 dag/week
 
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
 
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
+\subsection{Analyse van het bestaande IT-land\-schap}
+In deze fase wordt de huidige monitoringspraktijk binnen het bedrijf geanalyseerd. Dit omvat:
+\begin{itemize}
+    \item Opnemen van kritieke systemen (WMS, TMS, infrastructuurcomponenten)
+    \item Identificatie van blind spots, vertragingen in incidentdetectie
+    \item Documenteren van incidenten om huidige MTTR-waarden te reconstrueren
+\end{itemize}
+Deze resultaten worden gebruikt om de functionele eisen van een end-to-end oplossing te bepalen.
 
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+\textbf{Deliverable:} Overzicht van het bestaande monitoringslandschap en een lijst van functionele en niet-functionele vereisten voor de nieuwe oplossing.
+\textbf{Tijdsinschatting:} 4 weken, 1 dag/week
 
-%---------- Verwachte resultaten ----------------------------------------------
-\section{Verwacht resultaat, conclusie}%
-\label{sec:verwachte_resultaten}
+\subsection{Proof-of-concept}
+Op basis van de analyse wordt een kleinschalige end-to-end monitoringsoplossing opgezet waarin metrics, logs en eventueel traces uit de drie kritieke IT-componenten worden verzameld. Deze data wordt geïntegreerd in één dashboard, het dashboard wordt ook aangevuld met een alertingmechanisme dat binnen vijf minuten afwijkingen rapporteert. Door gesimuleerde incidenten uit te voeren, wordt er getest hoe snel en nauwkeurig de incidenten worden gedetecteerd en opgelost.
 
-Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
+\textbf{Deliverable:} Werkende proof-of-concept met dashboard en alertingsysteem, inclusief testresultaten.
+\textbf{Tijdsschatting:} 6 weken, 2 dagen/week.
 
-Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
+\subsection{Evaluatie}
+De proof-of-concept wordt geëvalueerd aan de hand van vooraf gedefinieerde KPI’s, waaronder MTTD, MTTR en availability. Tijdens gesimuleerde incidenten wordt gemeten hoe snel de incidenten gedetecteerd worden en hoe correct de gegenereerde alerts zijn. Deze resultaten worden vergeleken met de huidige monitoringsmanier om te bepalen of de end-to-end aanpak een meetbare verbetering oplevert.
 
-Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
+\textbf{Deliverable:} Evaluatieverslag met vergelijking tussen huidige monitoring en de PoC.
+\textbf{Tijdsschatting:} 3 weken, 1 dag/week.
 
+\subsection{Synthese en conclusies}
+In de laatste fase worden de bevindingen uit de literatuurstudie, analyse, proof-of-concept en evaluatie samengebracht om een antwoord te formuleren op de onderzoeksvraag. Daarbij wordt er beoordeeld in welke mate end-to-end monitoring leidt tot snellere incidentdetectie en hogere operationele stabiliteit en de beperkingen van het onderzoek worden besproken en geformuleerd voor verdere implementatie.
+
+\textbf{Deliverable:} Eindrapport met conclusies, antwoorden op de onderzoeksvraag en eventuele aanbeveling voor verdere uitrolling.
+\textbf{Tijdsschatting:} 2 weken, 1 dag/week.
+
+\section{Verwachte resultaten}%
+\label{sec:verwachte-resultaten}
+
+Op basis van de literatuurstudie en de opzet van de proof-of-concept wordt er verwacht dat de end-to-end monitoringoplossing leidt tot een merkbare verbetering in incidentdetectie en operationeel inzicht. Concreet wordt een lagere MTTD verwacht omdat afwijkingen sneller opgemerkt worden door bepaalde metrics, logs en traces. Ook wordt een daling in MTTR verwacht, omdat we sneller de échte oorzaak vinden als we de keten beter begrijpen. Er wordt verwacht dat het dashboard een duidelijker overzicht van het volledige proces biedt, waardoor blind spots verminderd worden en incidenten verkleind worden. Verder wordt aangenomen dat de proof-of-concept een hogere betrouwbaarheid van alerts aantoont met relevantere meldingen dan met de traditionele monitoringswijze. Tot slot wordt verwacht dat de resultaten inzicht zullen geven in welke mate end-to-end monitoring schaalbaar en toepasbaar is binnen de havencontext.
+
+\section{Conclusie}%
+\label{sec:conclusie}
+
+Dit onderzoek had als doel het bepalen in welke mate end-to-end monitoring kan bijdragen aan snellere incidentdetectie en -oplossing. Uit de literatuurstudie blijkt dat traditionele monitoring onvoldoende inzicht biedt op samenhangende processen en daardoor vaak leidt tot vertraagde detectie en beperkte root-cause herkenning. End-to-end monitoring kan hiervoor een antwoord bieden, het bekijkt het hele plaatje en heeft een breder inzicht.
+De proof-of-concept maakt het mogelijk om deze theoretische voordelen in de praktijk uit te proberen. Er worden verwachte resultaten gebruikt om zo te kijken naar een potentiële oplossing voor lagere MTTD, efficiëntere analyse en een verbeterd overzicht van het volledige IT-landschap. Het onderzoek toont aan dat end-to-end monitoring een haalbare en veelbelovende aanpak vormt voor complexere organisaties.
+
+
+\printbibliography[heading=bibintoc]
+
+\end{document}
