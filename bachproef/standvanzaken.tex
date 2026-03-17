@@ -1,51 +1,65 @@
-\chapter{\IfLanguageName{dutch}{Stand van zaken}{State of the art}}%
+\chapter{\IfLanguageName{dutch}{standvanzaken}{standvanzaken}}%
 \label{ch:stand-van-zaken}
+\section{Monitoring in moderne havenbedrijven}
 
-% Tip: Begin elk hoofdstuk met een paragraaf inleiding die beschrijft hoe
-% dit hoofdstuk past binnen het geheel van de bachelorproef. Geef in het
-% bijzonder aan wat de link is met het vorige en volgende hoofdstuk.
+\subsection{Digitalisering van havenomgevingen}
 
-% Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
+De zeehaven sector heeft de afgelopen jaren een sterke technologische evolutie doorgemaakt. Havens zijn geëvolueerd naar sterk gedigitaliseerde logistieke knooppunten waarin goederenstromen, transportprocessen en magazijnactiviteiten worden aangestuurd door complexe IT-systemen. Deze digitalisering wordt gedreven door de groeiende globalisering van goederenverkeer, toenemende concurrentie tussen havens en de noodzaak om processen efficiënter, veiliger en voorspelbaarder te maken.
 
-Dit hoofdstuk bevat je literatuurstudie. De inhoud gaat verder op de inleiding, maar zal het onderwerp van de bachelorproef *diepgaand* uitspitten. De bedoeling is dat de lezer na lezing van dit hoofdstuk helemaal op de hoogte is van de huidige stand van zaken (state-of-the-art) in het onderzoeksdomein. Iemand die niet vertrouwd is met het onderwerp, weet nu voldoende om de rest van het verhaal te kunnen volgen, zonder dat die er nog andere informatie moet over opzoeken \autocite{Pollefliet2011}.
+Onderzoek toont dat digitalisering een fundamentele pijler binnen moderne havenontwikkeling vormt, waarbij automatisering en data-integratie centraal staan in het optimaliseren van logistieke ketens. Havens verwerken dagelijks enorme hoeveelheden goederen, waarbij een hoge mate van coördinatie vereist is tussen verschillende componenten zoals rederijen, transportbedrijven, magazijnoperatoren en douanediensten. Deze coördinatie kan enkel gerealiseerd worden door middel van geïntegreerde informatiesystemen die real-time gegevens moeten kunnen uitwisselen.
 
-Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz.\ naar je bronnen. In \LaTeX{} kan dat met het commando \texttt{$\backslash${textcite\{\}}} of \texttt{$\backslash${autocite\{\}}}. Als argument van het commando geef je de ``sleutel'' van een ``record'' in een bibliografische databank in het Bib\LaTeX{}-formaat (een tekstbestand). Als je expliciet naar de auteur verwijst in de zin (narratieve referentie), gebruik je \texttt{$\backslash${}textcite\{\}}. Soms is de auteursnaam niet expliciet een onderdeel van de zin, dan gebruik je \texttt{$\backslash${}autocite\{\}} (referentie tussen haakjes). Dit gebruik je bv.~bij een citaat, of om in het bijschrift van een overgenomen afbeelding, broncode, tabel, enz. te verwijzen naar de bron. In de volgende paragraaf een voorbeeld van elk.
+Een belangrijke evolutie binnen havenomgevingen is de overgang van manuele naar geautomatiseerde processen. Waar goederen vroeger hoofdzakelijk manueel werden geregistreerd en opgevolgd, gebeurt dit vandaag via digitale systemen die gebruikmaken van sensortechnologie, dit vormt de basis van de automatisering. Sensoren zijn componenten die fysieke eigenschappen zoals temperatuur, beweging, gewicht of locatie meten en omzetten naar elektronische signalen, Radio Frequency Identification (RFID), een technologie die objecten contactloos kan identificeren via radiogolven, Internet of Things (IoT), vormt een netwerk van fysieke objecten die via internet met elkaar verbonden zijn en op die manier gegevens kunnen uitwisselen, en geavanceerde analysetechnieken, die gaan slimme conclusies trekken uit de verzamelde gegevens.~\autocite{Rodrigue2024}. Deze technologieën maken het mogelijk om goederenstromen nauwkeurig te volgen en processen dynamisch bij te sturen op basis van de huidige status waarin gewerkt wordt.
 
-\textcite{Knuth1998} schreef een van de standaardwerken over sorteer- en zoekalgoritmen. Experten zijn het erover eens dat cloud computing een interessante opportuniteit vormen, zowel voor gebruikers als voor dienstverleners op vlak van informatietechnologie~\autocite{Creeger2009}.
+\subsection{Kritieke IT-systemen binnen havenoperaties}
 
-Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je verwijst meteen naar een bron in de eerste zin die erop gebaseerd is, dus niet pas op het einde van een paragraaf.
+Binnen het gedigitaliseerde havenlandschap spelen verschillende gespecialiseerde softwaresystemen een centrale rol. Deze systemen ondersteunen specifieke logistieke processen en zijn vaak sterk met elkaar geïntegreerd. In een evaluatie van IT-systemen binnen de logistiek wordt beschreven hoe systemen zoals Warehouse Management Systems (WMS), Transport Management Systems (TMS) en Enterprise Resource Planning (ERP) elk een specifieke rol vervullen binnen het logistieke proces, maar pas hun volledige meerwaarde leveren wanneer ze geïntegreerd worden~\autocite{EvaluationITSysLogistics2024}. WMS-systemen focussen op magazijnbeheer en voorraadcontrole, terwijl TMS-systemen instaan voor transportplanning en -opvolging. ERP-systemen dienen daarbij als overkoepelend platform dat gegevens uit verschillende operationele systemen centraliseert en synchroniseert. De studie benadrukt dat een gebrek aan integratie tussen deze systemen leidt tot informatiefragmentatie en inefficiënte besluitvorming. Naarmate logistieke netwerken complexer en dynamischer worden, neemt het belang van realtime gegevensuitwisseling tussen deze systemen verder toe. Dit maakt logistieke IT-omgevingen niet alleen krachtiger, maar ook gevoeliger voor storingen die zich over meerdere systemen kunnen verspreiden.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{grail.jpg}
-  \caption[Voorbeeld figuur.]{\label{fig:grail}Voorbeeld van invoegen van een figuur. Zorg altijd voor een uitgebreid bijschrift dat de figuur volledig beschrijft zonder in de tekst te moeten gaan zoeken. Vergeet ook je bronvermelding niet!}
-\end{figure}
+\subsubsection{Warehouse Management Systems}
 
-\begin{listing}
-  \begin{minted}{python}
-    import pandas as pd
-    import seaborn as sns
+Warehouse Management Systems (WMS) ondersteunen het beheer en de optimalisatie van magazijnactiviteiten. Deze systemen coördineren processen zoals ontvangst van goederen, opslag, picking, inventarisbeheer en verzending. Moderne WMS-oplossingen maken gebruik van real-time voorraadtracking en optimalisatie-algoritmes om opslaglocaties en pickingroutes efficiënt te organiseren~\autocite{Matthias2025}.
 
-    penguins = sns.load_dataset('penguins')
-    sns.relplot(data=penguins, x="flipper_length_mm", y="bill_length_mm", hue="species")
-  \end{minted}
-  \caption[Voorbeeld codefragment]{Voorbeeld van het invoegen van een codefragment.}
-\end{listing}
+In havenomgevingen vervullen WMS-systemen een cruciale rol omdat containers en goederenstromen vaak tijdelijk worden opgeslagen voordat ze verder worden getransporteerd. Een storing binnen een WMS kan leiden tot verlies van voorraadzichtbaarheid, vertragingen in orderverwerking en verstoringen in transportplanning.
 
-\lipsum[7-20]
+\subsubsection{Transport Management Systems}
 
-\begin{table}
-  \centering
-  \begin{tabular}{lcr}
-    \toprule
-    \textbf{Kolom 1} & \textbf{Kolom 2} & \textbf{Kolom 3} \\
-    $\alpha$         & $\beta$          & $\gamma$         \\
-    \midrule
-    A                & 10.230           & a                \\
-    B                & 45.678           & b                \\
-    C                & 99.987           & c                \\
-    \bottomrule
-  \end{tabular}
-  \caption[Voorbeeld tabel]{\label{tab:example}Voorbeeld van een tabel.}
-\end{table}
+Transport Management Systems (TMS) ondersteunen de planning, uitvoering en opvolging van transportactiviteiten. Deze systemen optimaliseren transportstromen over verschillende modaliteiten zoals wegtransport, spoortransport en maritiem transport. TMS-systemen verwerken gegevens zoals transportorders, routeplanning, voertuigcapaciteit en leveringsdeadlines~\autocite{SAPn.d.}.
+
+Binnen havenoperaties zijn TMS-systemen essentieel voor het coördineren van containerverplaatsingen tussen terminals, magazijnen en transportpartners. Problemen binnen TMS-systemen, bijvoorbeeld wanneer het systeem uitvalt of trager werkt, kunnen leiden tot inefficiënte transportplanning, wachttijden en verstoringen in goederenstromingen.
+
+\subsubsection{Terminal Operating Systems}
+
+Terminal Operating Systems (TOS) vormen het centrale besturingssysteem binnen containerterminals. Deze systemen beheren activiteiten zoals scheepsplanning, containerplaatsing, kraanoperaties en yardbeheer. TOS-systemen coördineren het laden en lossen van schepen en zorgen ervoor dat containers correct worden opgeslagen en verplaatst binnen terminalterreinen~\autocite{LMA2025}.
+
+Door de grote afhankelijkheid van TOS-systemen kan een storing binnen dit systeem de volledige terminaloperatie stilleggen. Hierdoor wordt TOS vaak beschouwd als een mission-critical component binnen haveninfrastructuren.
+
+\subsubsection{Integraties tussen systemen}
+
+De genoemde systemen functioneren zelden onafhankelijk van elkaar, ze maken deel uit van een complex en sterk geïntegreerd applicatielandschap. Binnen moderne havenomgevingen wisselen Warehouse Management Systems (WMS), Transport Management Systems (TMS) en Terminal Operating Systems (TOS) de hele tijd gegevens uit met enterprise resource planning (ERP)-systemen klantportalen en diverse financiële toepassingen. ERP-systeem is het administratieve brein van de organisatie, het registreert en verwerkt de businesskant van systemen zoals WMS en TMS. Klantportalen bieden externe stakeholders zoals logistieke partners realtime inzicht in de status van goederen en transporten terwijl financiële toepassingen instaan voor de verwerking van betalingen, kostentoewijzingen en rapporteringen. Deze integratie is noodzakelijk om bij logistieke processen ervoor te zorgen dat end-to-end monitoring dit ondersteunt en realtime inzicht biedt in goederenstromen en operationele status~\autocite{Rodrigue2024, EvaluationITSysLogistics2024}.
+
+Technisch gezien worden deze integraties gerealiseerd via API-koppelingen, middleware-oplossingen. Deze architecturen maken het mogelijk om data asynchroon en in realtime te synchroniseren tussen verschillende systemen~\autocite{Saminathan2021}. Hoewel deze integraties leiden tot efficiëntere en beter gecoördineerde processen, verhogen ze tegelijkertijd de complexiteit van het IT-landschap. Problemen binnen één systeem of integratielaag kunnen zich hierdoor snel verspreiden naar andere systemen, wat kan resulteren in kettingreacties met ernstige verstoring van operaties.
+
+\subsection{De rol van data en automatisering}
+
+De toenemende digitalisering binnen havens gaat gepaard met een groeiende afhankelijkheid van data. Operationele beslissingen worden steeds vaker genomen op basis van real-time informatie afkomstig van sensoren, trackingsystemen en bedrijfsapplicaties. IoT-technologie maakt het mogelijk om containers, voertuigen en infrastructuurcomponenten continu te monitoren.
+
+Big Data-technologieën worden ingezet om grote hoeveelheden operationele data te analyseren en patronen te detecteren die kunnen wijzen op inefficiënties of storingen. Daarnaast worden artificiële intelligentie en machine learning steeds vaker toegepast om voorspellende analyses uit te voeren en operationele processen te optimaliseren.
+
+Hoewel deze technologieën aanzienlijke voordelen bieden op vlak van efficiëntie en voorspelbaarheid, verhogen ze ook de afhankelijkheid van betrouwbare IT-systemen. Naarmate meer processen geautomatiseerd worden, neemt de impact van IT-storingen toe.
+
+Het Havenbedrijf Antwerpen investeert samen met FPIM 5,25 miljoen euro in het dataplatform NxtPort. Dit platform maakt logistieke data inzichtelijk en transparant voor alle spelers in de haven, zodat processen efficiënter verlopen en vertragingen verminderen. Concrete toepassingen richten zich op douaneprocessen, terminalcapaciteit en containerbinnenvaart. Big data worden daarbij gezien als sleutel voor de slimme logistieke toekomst van Vlaanderen~\autocite{Slegers2017}.
+
+\subsection{Operationele risico’s binnen traditionele monitoring}
+
+Moderne IT-systemen zijn complex. Een enkele gebruikersaanvraag gaat tegenwoordig door meerdere services, netwerken, ... heen. Traditionele monitoring schiet in deze complexe omgevingen tekort omdat het zich apart richt op componenten, zoals een specifieke server of applicatie. Het probleem hiermee is dat er geen samenhangend beeld ontstaat van hoe deze componenten samenwerken. Zonder een consistent beeld wordt het vinden van prestatieproblemen of storingen een gokspel. Er ontstaan blinde vlekken omdat IT-teams wel alerts krijgen op individuele systemen, maar niet zien hoe problemen in het ene systeem zich voortzet naar het andere systeem.
+
+De gevolgen hiervan zijn concreet. Wanneer zich een storing voordoet, moeten IT-teams handmatig op zoek naar de oorzaak. Dit zorgt voor het verlies van kostbare tijd, terwijl gebruikers ondertussen hinder ondervinden. De Mean Time to Detect (MTTD) loopt op omdat problemen pas worden opgemerkt wanneer gebruikers klagen of processen zichtbaar stilvallen. Ook de Mean Time to Repair (MTTR) stijgt, omdat teams zonder het gebruik van end-to-end inzicht moeilijk de werkelijke oorzaak van een probleem kunnen achterhalen. Ze zien wel symptomen, maar kunnen dit moeilijker herleiden naar de bron.
+
+
+De ideale oplossing hiervoor is end-to-end monitoring, het biedt een oplossing door een volledig 360-graden perspectief te leveren op het hele proces. In plaats van naar losse componenten te kijken, worden gebruikersinteracties op de frontend, prestaties van applicaties, infrastructuur op de backend en netwerkcommunicatie met elkaar in verband gebracht. Door data over al deze lagen samen te hangen, ontstaat er een volledig beeld van hoe gegevens door de keten stromen, waar vertragingen optreden en waar fouten ontstaan.
+
+Dit leidt tot snellere probleemoplossing. Doordat teams data over alle niveaus kunnen bekijken, kunnen ze de fundamentele oorzaken van problemen in minuten vinden in plaats van uren of dagen. Problemen kunnen worden opgespoord en verholpen voordat gebruikers er hinder van ondervinden.
+
+Bovendien maakt end-to-end monitoring continue validatie mogelijk, zelfs tijdens veranderingen aan het systeem. Terwijl traditionele monitoring pas begint met troubleshooten wanneer gebruikers klagen, kunnen teams met end-to-end monitoring prestaties valideren, snel achteruitgang detecteren en de oorzaken sneller isoleren. Automatische meldingen bij trage laadtijden stellen technische teams in staat om sneller in te grijpen.
+
+De meerwaarde voor operationele efficiëntie is duidelijk. Door inzicht te krijgen in moeilijk te vinden knelpunten over verschillende systemen heen, kunnen IT-teams hun werklast verminderen en zich beter focussen op innovatie in plaats van het blussen van brandjes. De investering in end-to-end monitoring betaalt zich terug door lagere downtime-kosten, betere systeemprestaties en hogere klanttevredenheid~\autocite{Gaurav2024}
 

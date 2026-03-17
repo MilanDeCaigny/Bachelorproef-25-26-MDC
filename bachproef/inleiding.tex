@@ -5,46 +5,96 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-De inleiding moet de lezer net genoeg informatie verschaffen om het onderwerp te begrijpen en in te zien waarom de onderzoeksvraag de moeite waard is om te onderzoeken. In de inleiding ga je literatuurverwijzingen beperken, zodat de tekst vlot leesbaar blijft. Je kan de inleiding verder onderverdelen in secties als dit de tekst verduidelijkt. Zaken die aan bod kunnen komen in de inleiding~\autocite{Pollefliet2011}:
+\subsection{Aanleiding en context}
+
+Havens vormen wereldwijd een cruciaal schakelpunt in de logistieke keten. Elke dag worden er miljoenen containers in havens gelost en geladen. Daarnaast coördineren havens het transport over water, spoor en weg. Ook beheren ze uitgebreide magazijnen waar goederen tijdelijk worden opgeslagen. De afgelopen decennia hebben havenbedrijven een ingrijpende digitale transformatie doorgemaakt. Waar processen vroeger voornamelijk handmatig verliepen, worden ze nu aangestuurd door een complex geheel van onderling verbonden systemen.
+
+Binnen dit gedigitaliseerde landschap spelen systemen zoals Warehouse Management Systems (WMS) en Transport Management Systems (TMS) een centrale rol. Een WMS ondersteunt en optimaliseert magazijnprocessen zoals ontvangst, opslag, picking en verzending van goederen~\autocite{Matthias2025}. Een TMS daarentegen richt zich op de planning, uitvoering en optimalisatie van transportactiviteiten, zowel over water als over land~\autocite{SAPn.d.}. Deze systemen staan niet op zichzelf, maar wisselen voortdurend gegevens uit met elkaar en met andere componenten zoals Terminal Operating Systems (TOS), wat een gesofisticeerde softwareoplossing is die de complexe operaties binnen maritieme terminals beheert~\autocite{LMA2025}, financiële systemen en klantportalen.
+
+Deze digitalisering brengt aanzienlijke voordelen met zich mee. Processen verlopen sneller, zijn beter voorspelbaar en kunnen eenvoudiger worden afgestemd op wisselende omstandigheden. Uit onderzoek van~\autocite{Rodrigue2024} blijkt dat geautomatiseerde havens hun operationele efficiëntie met 20 tot 30 procent kunnen verhogen. Tegelijkertijd creëert de sterke afhankelijkheid van IT echter ook nieuwe kwetsbaarheden. Een verstoring in één systeem kan zich als een domino-effect voortplanten naar andere systemen en zo de volledige operatie verstoren.
+
+\subsection{Probleemstelling}
+
+In de praktijk blijkt dat IT-storingen in havenomgevingen vaak te laat worden gedetecteerd. Operationele teams worden pas gealarmeerd wanneer gebruikers klachten melden of wanneer processen zichtbaar stilvallen. Tegen die tijd is de operationele impact vaak al aanzienlijk: schepen kunnen niet gelost worden, containers blijven staan, vrachtwagens wachten urenlang en klanten worden geconfronteerd met vertragingen in hun supply chain.
+
+De kernoorzaak van dit probleem ligt bij traditionele monitoring. In veel organisaties, ook in de havensector, wordt monitoring per systeem of per component uitgevoerd. Dit wordt ook wel component-based monitoring of infrastructure monitoring genoemd. Brooks beschrijft hoe deze aanpak leidt tot een gefragmenteerd beeld: monitoringtools opereren los van elkaar, zonder gedeelde contextuele inzichten, waardoor het moeilijk wordt om de oorzaak van incidenten te achterhalen~\autocite{Brooks2004}. Hieraan wordt toegevoegd dat traditionele monitoringsoplossingen vaak onvoldoende schaalbaar zijn en moeite hebben met het bewaken van complexe, multi-tenant omgevingen~\autocite{Andreolini2014}. Een multi-tenant omgeving verwijst naar één software-installatie die door meerdere klanten (tenants) tegelijk gebruikt kan worden, waarbij elke klant zijn eigen gegevens en instellingen heeft maar dezelfde infrastructuur deelt.
+
+Dit resulteert in beperkte zichtbaarheid naarmate het IT-landschap groeit. Thalheim et al. (2017) bevestigen dat klassieke monitoring onvoldoende ondersteuning biedt voor root-cause analyse in gedistribueerde systemen; teams zien wel symptomen, maar kunnen deze moeilijk herleiden naar de werkelijke oorzaak~\autocite{Thalheim2017}.
+
+In 2017 werd rederij A.P. Møller-Maersk getroffen door de NotPetya-ransomware-aanval. De aanval legde wereldwijd terminals en containerverwerking plat, met verstoringen die dagen tot weken aanhielden. De totale financiële schade voor Maersk werd geschat tussen 200 en 300 miljoen dollar. Hoewel dit een kwaadaardige aanval betrof, illustreert het hoe sterk logistieke ketens afhankelijk zijn van de beschikbaarheid en stabiliteit van IT-systemen~\autocite{Mathews2017}. Eén zwakke schakel in het IT-landschap kan de volledige operatie platleggen, wat miljoenen euro's in verlies kan opbrengen. De gebeurtenis toont aan dat IT-risico's in havens niet alleen technische maar ook financiële en operationele gevolgen kan hebben.
+
+Meer recent, in juli 2024, veroorzaakte een foutieve software-update van CrowdStrike een wereldwijde IT-outage die Microsoft Windows-systemen trof. Ook containerterminals zoals Baltic Hub en de Port of Felixstowe ondervonden tijdelijke verstoringen~\autocite{Mandra2024}. Dit incident toont aan dat zelfs kortdurende IT-storingen veroorzaakt door een foutieve update, directe operationele gevolgen kunnen hebben voor havenactiviteiten. De stijgende complexiteit van IT-omgevingen zorgt ervoor dat een fout in één of meerdere softwarecomponenten wereldwijd duizenden systemen kan treffen. Havens zijn hierdoor niet alleen afhankelijk van hun eigen systemen, maar ook van de betrouwbaarheid van software van externe leveranciers.
+
+Deze voorbeelden onderstrepen de noodzaak van een monitoringsaanpak die verder gaat dan klassieke tools. Traditionele monitoring, zoals eerder beschreven, kijkt naar losse componenten en mist daardoor het overzicht over het geheel. Hierdoor worden verbanden tussen systemen niet gelegd en blijft de echte oorzaak van incidenten vaak verborgen.
+
+Er is behoefte aan een geïntegreerde oplossing die het volledige IT-landschap in kaart brengt. Zo'n oplossing zou niet alleen per systeem moeten kijken, maar juist de samenhang tussen systemen zichtbaar moeten maken. Wanneer zich een probleem voordoet, moet de monitoring tijdig alarmeren, bij voorkeur voordat gebruikers er hinder van ondervinden. Daarnaast is inzicht in de oorzaak van incidenten essentieel, zodat IT-teams niet alleen symptomen bestrijden, maar het probleem bij de bron kunnen aanpakken.
+
+End-to-end monitoring wordt in de literatuur naar voren geschoven als een veelbelovende benadering om aan deze behoeften te voldoen~\autocite{Mireles2024}. In tegenstelling tot traditionele monitoring, die zich richt op individuele componenten, bewaakt end-to-end monitoring het volledige traject van een proces~\autocite{Saminathan2021}. Van een aanvraag in een klantportaal, via een WMS dat de voorraad controleert, tot een TMS dat transport plant: elke stap wordt gevolgd. Door metrics, logs en traces te combineren, ontstaat een volledig beeld van hoe gegevens door de keten stromen, waar vertragingen optreden en waar fouten ontstaan. Deze aanpak maakt het mogelijk om niet alleen sneller te detecteren dat er een probleem is, maar ook om precies te begrijpen waar en waarom het probleem zich voordoet.
+
+\section{Onderzoeksvragen}
+
+Dit onderzoek richt zich op de centrale vraag:
+
+\begin{quote}
+    \textbf{Hoe kan een end-to-end monitoringoplossing worden ontworpen en geïmplementeerd om IT-incidenten tijdig te detecteren en sneller op te lossen binnen het havenlandschap?}
+\end{quote}
+
+Om deze hoofdvraag te beantwoorden, worden zes deelvragen geformuleerd, onderverdeeld in een probleemdomein en een oplossingsdomein.
+
+\textbf{Probleemdomein:}
+
+\begin{enumerate}
+    \item Welke IT-systemen en infrastructuurcomponenten zijn essentieel voor de uitvoering van de end-to-end processen binnen een havenbedrijf?
+    \item Welke types IT-incidenten hebben de grootste negatieve impact op operationele KPI's?
+    \item Wat zijn de tekortkomingen van de huidige monitoringsmethodes in het bieden van overzicht en samenhang binnen end-to-end processen?
+\end{enumerate}
+
+\textbf{Oplossingsdomein:}
+
+\begin{enumerate}
+    \setcounter{enumi}{3}
+    \item Hoe kan een end-to-end monitoringsoplossing worden ontworpen zodat metrics, logs en traces efficiënt geïntegreerd worden binnen één centraal monitoringplatform?
+    \item Hoe kan een end-to-end monitoringsoplossing worden ingericht om IT-incidenten tijdig te detecteren en relevante alerts te genereren voor IT-operationele teams?
+    \item Hoe kan een end-to-end monitoringsoplossing zichtbaar maken hoe storingen in één IT-systeem doorwerken naar andere systemen binnen de procesketen?
+\end{enumerate}
+
+\section{Onderzoeksdoelstelling}
+
+Het doel van dit onderzoek is om een end-to-end monitoringsoplossing te ontwerpen en te implementeren in de vorm van een proof-of-concept. Deze oplossing moet operationele IT-teams ondersteunen bij het tijdig detecteren van storingen en het sneller achterhalen van hun oorzaak. Concreet worden de volgende doelstellingen nagestreefd:
 
 \begin{itemize}
-  \item context, achtergrond
-  \item afbakenen van het onderwerp
-  \item verantwoording van het onderwerp, methodologie
-  \item probleemstelling
-  \item onderzoeksdoelstelling
-  \item onderzoeksvraag
-  \item \ldots
+    \item Het in kaart brengen van de kritieke IT-componenten binnen de havencontext en hun onderlinge afhankelijkheden.
+    \item Het ontwerpen van een monitoringsarchitectuur die metrics, logs en traces integreert in één centraal platform.
+    \item Het implementeren van een werkend proof-of-concept met behulp van moderne, open-source tools.
+    \item Het evalueren van de effectiviteit van de oplossing aan de hand van gedefinieerde KPI's, met name Mean Time to Detect (MTTD) en Mean Time to Repair (MTTR).
 \end{itemize}
 
-\section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
-\label{sec:probleemstelling}
+Uiteindelijk moet de oplossing ervoor zorgen dat IT-storingen minder vaak en minder lang de havenactiviteiten verstoren.
 
-Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
+\section{Methodologische aanpak}
 
-\section{\IfLanguageName{dutch}{Onderzoeksvraag}{Research question}}%
-\label{sec:onderzoeksvraag}
+Om de onderzoeksvragen te beantwoorden, wordt een ontwerpgerichte onderzoeksaanpak gevolgd, bestaande uit verschillende fasen.
 
-Wees zo concreet mogelijk bij het formuleren van je onderzoeksvraag. Een onderzoeksvraag is trouwens iets waar nog niemand op dit moment een antwoord heeft (voor zover je kan nagaan). Het opzoeken van bestaande informatie (bv. ``welke tools bestaan er voor deze toepassing?'') is dus geen onderzoeksvraag. Je kan de onderzoeksvraag verder specifiëren in deelvragen. Bv.~als je onderzoek gaat over performantiemetingen, dan 
+In de eerste fase wordt een literatuurstudie uitgevoerd naar bestaande monitoringsstrategieën, met focus op de tekortkomingen van traditionele monitoring en de voordelen van end-to-end monitoring. Er wordt onderzocht welke KPI's algemeen gebruikt worden om monitoringsprestaties te evalueren (MTTD, MTTR en beschikbaarheid) en hoe deze kunnen worden toegepast in complexe, onderling afhankelijke IT-omgevingen zoals in havensystemen.
 
-\section{\IfLanguageName{dutch}{Onderzoeksdoelstelling}{Research objective}}%
-\label{sec:onderzoeksdoelstelling}
+In de tweede fase wordt de huidige monitoringspraktijk binnen het haven-IT-landschap geanalyseerd. Dit omvat het in kaart brengen van kritieke systemen (WMS, TMS, infrastructuurcomponenten), identificatie van blind spots en vertragingen in incidentdetectie, en documentatie van incidenten om huidige MTTD-waarden te reconstrueren. Deze resultaten worden gebruikt om de functionele eisen van een end-to-end oplossing te bepalen.
 
-Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
+In de derde fase wordt op basis van de analyse een kleinschalige end-to-end monitoringsoplossing opgezet waarin metrics, logs en traces uit de kritieke IT-componenten worden verzameld. Deze data wordt geïntegreerd in één dashboard, aangevuld met een alertingmechanisme. Door gesimuleerde incidenten uit te voeren, wordt getest hoe snel en nauwkeurig incidenten worden gedetecteerd.
 
-\section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
-\label{sec:opzet-bachelorproef}
+In de vierde fase wordt de proof-of-concept geëvalueerd aan de hand van vooraf gedefinieerde KPI's. Tijdens gesimuleerde incidenten wordt gemeten hoe snel incidenten gedetecteerd worden en hoe correct de gegenereerde alerts zijn. Deze resultaten worden vergeleken met de huidige monitoringsaanpak om te bepalen of de end-to-end aanpak een meetbare verbetering oplevert.
 
-% Het is gebruikelijk aan het einde van de inleiding een overzicht te
-% geven van de opbouw van de rest van de tekst. Deze sectie bevat al een aanzet
-% die je kan aanvullen/aanpassen in functie van je eigen tekst.
+In de laatste fase worden de bevindingen uit de literatuurstudie, analyse, proof-of-concept en evaluatie samengebracht om een antwoord te formuleren op de onderzoeksvraag. Daarbij wordt beoordeeld in welke mate end-to-end monitoring leidt tot snellere incidentdetectie en hogere operationele stabiliteit.
 
-De rest van deze bachelorproef is als volgt opgebouwd:
+\section{Structuur van deze bachelorproef}
 
-In Hoofdstuk~\ref{ch:stand-van-zaken} wordt een overzicht gegeven van de stand van zaken binnen het onderzoeksdomein, op basis van een literatuurstudie.
+Deze bachelorproef is als volgt opgebouwd:
 
-In Hoofdstuk~\ref{ch:methodologie} wordt de methodologie toegelicht en worden de gebruikte onderzoekstechnieken besproken om een antwoord te kunnen formuleren op de onderzoeksvragen.
+In Hoofdstuk~\ref{ch:stand-van-zaken} wordt besproken wat er al bekend is over monitoring in havens. Op basis van literatuur wordt uitgelegd hoe havens digitaliseren, wat er mis is met traditionele monitoring, wat end-to-end monitoring is, en welke KPI's belangrijk zijn om prestaties te meten.
 
-% TODO: Vul hier aan voor je eigen hoofstukken, één of twee zinnen per hoofdstuk
+In Hoofdstuk~\ref{ch:methodologie} wordt de methodologie toegelicht. De verschillende fasen van het onderzoek worden beschreven: literatuurstudie, analyse van het haven-IT-landschap, ontwerp en implementatie van de proof-of-concept, evaluatie en synthese.
 
-In Hoofdstuk~\ref{ch:conclusie}, tenslotte, wordt de conclusie gegeven en een antwoord geformuleerd op de onderzoeksvragen. Daarbij wordt ook een aanzet gegeven voor toekomstig onderzoek binnen dit domein.
+In Hoofdstuk~\ref{ch:resultaten} worden de resultaten van het praktijkonderzoek gepresenteerd. Hierin komen de opzet van de proof-of-concept, de uitgevoerde testsimulaties en de metingen van MTTD, MTTR en alertkwaliteit aan bod.
+
+In Hoofdstuk~\ref{ch:discussie} worden de resultaten geïnterpreteerd en besproken. De beperkingen van het onderzoek worden besproken en aanbevelingen voor de praktijk en voor vervolgonderzoek worden geformuleerd.
+
+In Hoofdstuk~\ref{ch:conclusie} wordt de conclusie gegeven en een antwoord geformuleerd op de onderzoeksvragen. Daarbij wordt ook een aanzet gegeven voor toekomstig onderzoek binnen dit domein.
