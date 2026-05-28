@@ -1,16 +1,16 @@
 \chapter{\IfLanguageName{dutch}{Methodologie}{Methodology}}
 \label{ch:methodologie}
 
-Dit hoofdstuk beschrijft de methodologische aanpak die word gevolgd om een antwoord te krijgen op de onderzoeksvraag van deze bachelorproef. Het onderzoek heeft een ontwerpgericht karakter en combineert een literatuurstudie met een praktijkgericht onderzoek in de vorm van een proof-of-concept. De methodologie is opgedeeld in verschillende opeenvolgende fasen, waarbij elke fase een duidelijk afgebakende doelstelling en concrete output heeft.
+Dit hoofdstuk beschrijft de methodologische aanpak die wordt gevolgd om een antwoord te krijgen op de onderzoeksvraag van deze bachelorproef. Het onderzoek heeft een ontwerpgericht karakter en combineert een literatuurstudie met een praktijkgericht onderzoek in de vorm van een proof-of-concept. De methodologie is opgedeeld in verschillende opeenvolgende fasen, waarbij elke fase een duidelijk afgebakende doelstelling en concrete output heeft.
 
 \section{Onderzoeksopzet}
 
-Deze bachelorproef volgt een ontwerpgerichte onderzoeksaanpak. Het doel is niet enkel het analyseren van een probleem, maar ook het ontwerpen, implementeren en evalueren van een mogelijke oplossing. In dit geval wordt een end-to-end monitoringsoplossing ontworpen en getest binnen een havencontext. Deze aanpak is geschikt omdat het onderzoek zich richt op het verbeteren van een bestaande praktijk en het aantonen van de haalbaarheid van een technische oplossing.
+Deze bachelorproef volgt een ontwerpgerichte onderzoeksaanpak. Het doel is niet enkel het analyseren van een probleem, maar ook het ontwerpen, implementeren en evalueren van een mogelijke oplossing. Tijdens dit onderzoek wordt een end-to-end monitoringsoplossing ontworpen en getest binnen een havencontext. Deze aanpak is geschikt omdat het onderzoek zich richt op het verbeteren van een bestaande praktijk en het aantonen van de haalbaarheid van een technische oplossing.
 De keuze voor deze aanpak sluit aan bij de aard van de onderzoeksvraag, die vraagt naar hoe een end-to-end monitoringsoplossing kan worden ontworpen en geïmplementeerd. Het onderzoek doorloopt daarbij verschillende fasen: een literatuurstudie naar bestaande monitoringsstrategieën, een analyse van de kenmerken van een haven-IT-landschap, het ontwerp en de implementatie van een proof-of-concept, en tot slot een evaluatie van de resultaten. Door deze stappen te doorlopen, wordt niet alleen theoretisch onderbouwd waarom end-to-end monitoring meerwaarde biedt, maar wordt dit ook in de praktijk getoetst.
 
 \section{Literatuurstudie}
 
-De eerste fase van het onderzoek bestaat uit een literatuurstudie naar monitoringstrategieën binnen complexe IT-omgevingen, met een specifieke focus op haven- en logistieke contexten. Hierbij wordt onderzocht hoe traditionele monitoring wordt toegepast, welke beperkingen deze aanpak kent en op welke manier end-to-end monitoring hierop een antwoord kan bieden.
+De eerste fase van het onderzoek bestaat uit een literatuurstudie naar monitoringstrategieën binnen complexe IT-omgevingen, met een specifieke focus op haven- en logistieke contexten. In deze fase wordt onderzocht hoe traditionele monitoring wordt toegepast, welke beperkingen deze aanpak kent en op welke manier end-to-end monitoring hierop een antwoord kan bieden.
 
 De literatuurstudie baseert zich op wetenschappelijke artikels, vakliteratuur en technische publicaties van erkende organisaties en softwareleveranciers. Bronnen werden geselecteerd op basis van relevantie voor het onderzoeksdomein, actualiteit en inhoudelijke kwaliteit. Er werd bijzondere aandacht besteed aan publicaties die ingaan op distributed systems, observability, monitoringarchitecturen en operationele KPI’s zoals Mean Time to Detect (MTTD) en Mean Time to Repair (MTTR).
 
@@ -18,9 +18,11 @@ De literatuurstudie baseert zich op wetenschappelijke artikels, vakliteratuur en
 
 \section{Analyse van het bestaande IT-landschap}
 
-In de volgende fase wordt het bestaande IT-landschap binnen de havenomgeving geanalyseerd. Hierbij worden de belangrijkste IT-systemen en infrastructuurcomponenten in kaart gebracht, ook hun onderlinge afhankelijkheden. Het gaat hierbij over systemen zoals Warehouse Management Systems (WMS), Transport Management Systems (TMS) en Terminal Operating Systems (TOS), die samen de kern vormen van de havenlogistieke processen. Daarnaast wordt onderzocht hoe incidenten momenteel worden gedetecteerd en opgevolgd, en waar zich mogelijke blind spots bevinden binnen de huidige monitoringsaanpak. De manier hoe alerts gegenereerd worden en hoe teams daarop reageren wordt ook bekeken.
+In de volgende fase wordt het bestaande IT-landschap binnen de havenomgeving geanalyseerd. Daarnaast worden de belangrijkste IT-systemen en infrastructuurcomponenten in kaart gebracht en hun onderlinge afhankelijkheden. Deze belangrijke IT systemen omvatten onder andere Warehouse Management Systems (WMS), Transport Management Systems (TMS) en Terminal Operating Systems (TOS), die samen de kern vormen van de haven logistieke processen. Daarnaast wordt onderzocht hoe incidenten momenteel worden gedetecteerd en opgevolgd, en waar zich mogelijke blind spots bevinden binnen de huidige monitoringsaanpak. De manier hoe alerts gegenereerd worden en hoe teams daarop reageren wordt ook bekeken.
 
-Deze analyse vormt de basis voor het bepalen van de functionele en niet-functionele vereisten van de end-to-end monitoringsoplossing. Functionele vereisten beschrijven wat de oplossing moet kunnen (zoals het verzamelen van metrics, logs en traces), terwijl niet-functionele vereisten betrekking hebben op eigenschappen zoals schaalbaarheid, gebruiksgemak, ...
+Deze analyse vormt de basis voor het bepalen van de functionele en niet-functionele vereisten van de end-to-end monitoringsoplossing. Functionele vereisten beschrijven wat de oplossing moet kunnen, zoals het verzamelen van metrics (numerieke prestatiegegevens zoals CPU-belasting of responstijden), logs (gedetailleerde gebeurtenisregistraties zoals foutmeldingen of gebruikersacties), en traces (het volgen van een specifieke aanvraag doorheen alle betrokken systemen om vertragingen en fouten te lokaliseren).
+
+Terwijl niet-functionele vereisten betrekking hebben op eigenschappen zoals schaalbaarheid, gebruiksgemak en betrouwbaarheid.
 
 \textbf{Output:} een overzicht van kritieke systemen, bestaande monitoringspraktijken, vastgestelde tekortkomingen en een lijst van vereisten waaraan de nieuwe oplossing moet voldoen.
 
@@ -34,7 +36,7 @@ De implementatie gebeurt in een gecontroleerde testomgeving waarin gesimuleerde 
 
 \section{Evaluatie}
 
-De proof-of-concept wordt geëvalueerd aan de hand van vooraf gedefinieerde KPI’s. Tijdens gesimuleerde incidenten wordt gemeten hoe snel incidenten worden gedetecteerd en in welke mate de gegenereerde alerts relevant en correct zijn. De resultaten worden vergeleken met de huidige monitoringsaanpak om te bepalen of de end-to-end oplossing een meetbare verbetering oplevert.
+De proof-of-concept wordt geëvalueerd aan de hand van vooraf gedefinieerde KPI’s. Tijdens gesimuleerde incidenten wordt geobserveerd hoe snel incidenten zichtbaar worden binnen de monitoringomgeving. De resultaten worden vergeleken met de huidige monitoringsaanpak om te bepalen of de end-to-end oplossing een meetbare verbetering oplevert.
 
 \textbf{Output:} evaluatieresultaten en een vergelijking tussen traditionele monitoring en end-to-end monitoring.
 

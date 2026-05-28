@@ -1,0 +1,64 @@
+%%=============================================================================
+%% Discussie
+%%=============================================================================
+
+\chapter{\IfLanguageName{dutch}{Discussie}{Discussion}}%
+\label{ch:discussie}
+
+\section{Inleiding}
+
+In dit hoofdstuk worden de resultaten van de proof-of-concept geïnterpreteerd en bediscussieerd. Daarnaast worden de beperkingen van het onderzoek besproken en aanbevelingen voor de praktijk en vervolgonderzoek geformuleerd.
+
+\section{Interpretatie van de resultaten}
+
+Uit de resultaten van de proof-of-concept blijkt dat traditionele monitoring en end-to-end monitoring elk een andere benadering hanteren voor het detecteren van problemen binnen IT-omgevingen.
+
+Traditionele monitoring bleek zeer geschikt te zijn voor het detecteren van technische en infrastructuur problemen. Problemen zoals uitval van de webserver, verhoogde CPU-belasting en netwerkconnectiviteitsproblemen konden snel gedetecteerd worden door monitoringchecks en metrics. Daarnaast bood traditionele monitoring meer inzicht in de onderliggende oorzaak van bepaalde problemen, bijvoorbeeld via CPU-metrics of TCP-connectiviteitscontroles.
+
+End-to-end monitoring richtte zich daarentegen voornamelijk op de gebruikerservaring en de correcte werking van volledige gebruikersflows. Vooral bij functionele problemen binnen de applicatie bleek deze aanpak een belangrijke meerwaarde te bieden. Dit werd duidelijk zichtbaar bij de scenario’s rond databasefouten en de redirectloop na login. In deze situaties bleef de infrastructuur technisch operationeel, terwijl de gebruikersflow toch niet correct functioneerde. End-to-end monitoring detecteerde deze problemen onmiddellijk doordat de geautomatiseerde Robotmk-tests de volledige loginflow uitvoerden vanuit het perspectief van de eindgebruiker.
+
+Daarnaast bleek uit de resultaten dat end-to-end monitoring minder geschikt is voor het analyseren van de exacte technische oorzaak van een probleem. Bij een hoge CPU-belasting kon end-to-end monitoring enkel vaststellen dat de gebruikerservaring vertraagde, terwijl traditionele monitoring direct aangaf dat er een verhoogde CPU-utilization was.
+
+De resultaten tonen aan dat beide monitoringmethoden elkaar goed aanvullen.
+
+\section{Beperkingen van het onderzoek}
+
+Binnen deze bachelorproef werd gebruikgemaakt van een beperkte proof-of-concept omgeving bestaande uit twee virtuele machines, een eenvoudige webapplicatie en een beperkt aantal scenario’s. Hierdoor kunnen de resultaten niet volledig gegeneraliseerd worden naar complexe productieomgevingen met meerdere applicaties, microservices of verdeelde infrastructuren.
+
+Daarnaast werden slechts zes scenario’s uitgewerkt. Hoewel deze scenario’s representatief zijn voor verschillende soorten problemen binnen IT-omgevingen, bestaan er nog tal van andere mogelijke storingen en performantieproblemen die niet onderzocht werden binnen deze bachelorproef.
+
+Binnen deze proof-of-concept werden de meeste scenario’s uitgevoerd op afzonderlijke componenten zoals de webapplicatie of database. Hierdoor werd slechts gedeeltelijk onderzocht hoe storingen zich over meerdere systemen binnen een volledige procesketen kunnen verspreiden.
+
+In een realistische havenomgeving zijn systemen zoals WMS, TMS en TOS sterk met elkaar verbonden via API’s, middleware en andere integratiemechanismen. Een storing binnen één systeem kan hierdoor een kettingreactie veroorzaken die meerdere processen beïnvloedt.
+
+Het simuleren van dergelijke complexe afhankelijkheden vereist echter een grotere en meer realistische infrastructuur met meerdere geïntegreerde systemen en communicatiestromen. Binnen de beperkte schaal van deze proof-of-concept en de beschikbare hardwaremiddelen werd daarom gekozen voor afzonderlijke scenario’s op individuele componenten.
+
+Ook werd uitsluitend gebruikgemaakt van Checkmk en Robotmk als monitoringoplossingen. Andere monitoringplatformen kunnen verschillen in functionaliteit of detectiemechanismen.
+
+\section{Aanbevelingen voor de praktijk}
+
+Op basis van de resultaten wordt aanbevolen om traditionele monitoring en end-to-end monitoring gecombineerd te gebruiken binnen moderne IT-omgevingen.
+
+Traditionele monitoring blijft noodzakelijk voor het opvolgen van infrastructuurcomponenten en technische beschikbaarheid van systemen. Deze aanpak geeft systeembeheerders een snel inzicht in de technische oorzaak van problemen en laat toe om infrastructuurproblemen efficiënt te analyseren en op te lossen.
+
+Daarnaast blijkt end-to-end monitoring een belangrijke aanvulling te zijn voor het bewaken van de gebruikerservaring en functionele werking van applicaties. Vooral bij bedrijfskritische applicaties en loginflows kan end-to-end monitoring helpen om problemen sneller te detecteren vanuit het perspectief van de eindgebruiker.
+
+\section{Aanbevelingen voor vervolgonderzoek}
+
+Vervolgonderzoek kan zich richten op het uitbreiden van de proof-of-concept naar grotere en complexere IT-omgevingen met meerdere servers, microservices, API-integraties, middlewarecomponenten en cloudinfrastructuren.
+
+Daarnaast kan onderzocht worden hoe artificiële intelligentie en machine learning geïntegreerd kunnen worden binnen monitoringplatformen om afwijkingen automatisch te detecteren en voorspellen.
+
+Een andere mogelijkheid voor een vervolgonderzoek bestaat uit het onderzoeken van automatische remediatie en self-healing mechanismen waarbij monitoringtools niet enkel problemen detecteren, maar ook automatisch corrigerende acties uitvoeren.
+
+Een bijkomend aspect dat binnen deze bachelorproef beperkt behandeld werd, is alertcorrelatie en root-cause analyse. In complexe IT-omgevingen kunnen storingen binnen één component leiden tot meerdere foutmeldingen in afhankelijke systemen. Hierdoor ontstaat het risico op een groot aantal gelijktijdige alerts, terwijl slechts één onderliggend probleem de werkelijke oorzaak vormt.
+
+End-to-end monitoring kan hierbij extra context bieden door afhankelijkheden tussen systemen en gebruikersflows zichtbaar te maken. Verdere uitbreiding van de proof-of-concept zou kunnen onderzoeken hoe correlatie van alerts en automatische root-cause analyse kunnen bijdragen aan een lagere MTTR binnen complexe havenomgevingen.
+
+\section{Conclusie van de discussie}
+
+Uit de discussie blijkt dat zowel traditionele monitoring als end-to-end monitoring een belangrijke rol spelen binnen moderne IT-omgevingen. Beide benaderingen hebben specifieke sterktes en beperkingen afhankelijk van het type probleem dat zich voordoet.
+
+Traditionele monitoring biedt voornamelijk inzicht in infrastructuur, performantie en technische beschikbaarheid, terwijl end-to-end monitoring beter geschikt is voor het detecteren van functionele problemen en problemen die rechtstreeks impact hebben op de gebruikerservaring.
+
+De resultaten van deze bachelorproef tonen aan dat een gecombineerde aanpak de meeste meerwaarde biedt. Door beide monitoringmethoden samen te gebruiken kunnen organisaties zowel technische infrastructuurproblemen als functionele fouten binnen gebruikersflows efficiënter detecteren en analyseren.

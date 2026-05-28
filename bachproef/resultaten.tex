@@ -1,0 +1,156 @@
+\chapter{\IfLanguageName{dutch}{Resultaten}{Results}}
+\label{ch:resultaten}
+
+\section{Inleiding}
+
+In dit hoofdstuk worden de resultaten van de uitgevoerde proof-of-concept besproken. De verschillende scenario’s werden zowel met traditionele monitoring als met end-to-end monitoring geëvalueerd. 
+
+Het doel van deze analyse is om de verschillen tussen beide monitoringbenaderingen duidelijk in kaart te brengen, met een focus op detectie, nauwkeurigheid en relevantie voor de eindgebruiker.
+
+\section{Vergelijking van de scenario’s}
+
+Om een duidelijk overzicht te geven van de resultaten, worden de zes uitgevoerde scenario’s met elkaar vergeleken.
+
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|X|c|c|}
+        \hline
+        \textbf{Scenario} & \textbf{Traditioneel} & \textbf{End-to-end} \\ \hline
+        Uitval webapplicatie & HTTP down & Gebruikersflow faalt \\ \hline
+        Databasefout & HTTP fout & Login faalt \\ \hline
+        Trage webapplicatie & Hoge responstijd & Laadtijd overschreden \\ \hline
+        Hoge CPU-belasting & CPU metrics stijgen & Enkel impact zichtbaar \\ \hline
+        Verlies connectiviteit DB & TCP OK / HTTP CRIT & Databasefout zichtbaar \\ \hline
+        Redirectloop login & Services blijven OK & Functionele fout zichtbaar \\ \hline
+    \end{tabularx}
+    \caption{Vergelijking tussen traditionele en end-to-end monitoring}
+    \label{tab:vergelijking_monitoring}
+\end{table}
+
+Uit Tabel~\ref{tab:vergelijking_monitoring} blijkt dat beide monitoringmethodes verschillende sterktes en zwaktes hebben, afhankelijk van het type probleem dat zich voordoet.
+
+\section{Analyse per scenario}
+
+\subsection{Uitval van de webapplicatie}
+
+Bij het volledig uitvallen van de webapplicatie detecteren beide monitoringmethodes het probleem. Traditionele monitoring geeft een CRIT-status wanneer de HTTP-service niet bereikbaar is. End-to-end monitoring detecteert dit eveneens, maar toont dit als een gefaalde test waarbij de volledige gebruikersflow niet kan worden uitgevoerd.
+
+Hoewel beide methodes het probleem detecteren, biedt end-to-end monitoring een directere link met de gebruikerservaring. De test faalt immers op dezelfde manier als een gebruiker de applicatie niet kan bereiken.
+
+\subsection{Databasefout}
+
+In het geval van een databasefout blijft de webapplicatie bereikbaar, maar functioneert deze niet correct. Traditionele monitoring detecteert dit enkel wanneer specifieke inhoudscontroles geconfigureerd zijn. Zonder deze configuratie blijft de HTTP-service als OK weergegeven.
+
+End-to-end monitoring detecteert dit probleem automatisch tijdens de loginflow. De test faalt doordat een foutmelding wordt weergegeven, en de testlog toont exact op welke stap dit gebeurt.
+
+Dit scenario toont duidelijk aan dat end-to-end monitoring beter in staat is om fouten binnen de applicatielogica te detecteren.
+
+\subsection{Trage webapplicatie}
+
+Bij een trage webapplicatie detecteert traditionele monitoring een verhoogde responstijd en kan dit als WARN of CRIT markeren. Deze meting blijft echter beperkt tot de responstijd van de service.
+
+End-to-end monitoring detecteert de vertraging op basis van de volledige gebruikersflow. De test faalt wanneer de laadtijd de ingestelde drempel overschrijdt. Bovendien wordt in de testlog zichtbaar welke stappen vertraagd zijn.
+
+Hierdoor biedt end-to-end monitoring een realistischer beeld van de impact van performantieproblemen op de eindgebruiker.
+
+\subsection{Hoge CPU-belasting}
+
+Bij een hoge CPU-belasting toont traditionele monitoring duidelijke afwijkingen in CPU load en CPU utilization. Deze worden rechtstreeks gemeten en leiden tot een WARN of CRIT-status.
+
+End-to-end monitoring detecteert dit probleem enkel wanneer de verhoogde belasting een impact heeft op de werking van de applicatie. In sommige gevallen blijft de test slagen, ondanks de verhoogde CPU-belasting. In andere gevallen kan de test falen door een verhoogde responstijd.
+
+Daarnaast biedt traditionele monitoring ook de mogelijkheid om deze CPU-gerelateerde problemen zeer specifiek te identificeren. Door het gebruik van metrics zoals CPU load en CPU utilization kan niet alleen vastgesteld worden dat er een probleem is, maar ook dat dit probleem effectief veroorzaakt wordt door een verhoogde CPU-belasting. Hierdoor krijgt de beheerder een duidelijk inzicht in de oorzaak van het probleem, wat een gerichtere en snellere analyse mogelijk maakt.
+
+Dit scenario toont aan dat end-to-end monitoring geen inzicht geeft in de oorzaak van het probleem, maar enkel in de impact ervan op de gebruikerservaring.
+
+\subsection{Verlies van connectiviteit tussen applicatie en database}
+
+Bij dit scenario bleef de database technisch bereikbaar via de TCP-check op poort 3306, terwijl de webapplicatie geen correcte verbinding meer kon maken met de database.
+
+Traditionele monitoring kon dit probleem detecteren door afzonderlijke TCP- en HTTP-controles te combineren. End-to-end monitoring detecteerde het probleem automatisch tijdens de loginflow doordat de foutmelding \texttt{Fout in de database} zichtbaar werd.
+
+Dit scenario toont aan dat traditionele monitoring meerdere gespecialiseerde controles vereist om complexe connectiviteitsproblemen correct te analyseren, terwijl end-to-end monitoring de impact op de gebruikersflow rechtstreeks zichtbaar maakt.
+
+\subsection{Redirectloop na login}
+
+Bij dit scenario bleef de volledige infrastructuur technisch bereikbaar en retourneerde de webapplicatie correcte HTTP-responses.
+
+Traditionele monitoring detecteerde hierdoor geen probleem, aangezien zowel de webserver als de database correct functioneerden vanuit technisch perspectief.
+
+End-to-end monitoring detecteerde het probleem echter onmiddellijk tijdens de loginflow. De Robotmk-test stelde vast dat de gebruiker na het aanmelden opnieuw op de loginpagina terechtkwam in plaats van op de verwachte succespagina.
+
+Dit scenario toont duidelijk aan dat traditionele monitoring onvoldoende inzicht biedt in functionele fouten binnen gebruikersflows, terwijl end-to-end monitoring dergelijke problemen rechtstreeks detecteert vanuit het perspectief van de eindgebruiker.
+
+\section{Algemene bevindingen}
+
+De resultaten tonen aan dat beide monitoringmethoden in staat waren om bepaalde problemen correct te detecteren, maar dat hun nauwkeurigheid afhankelijk was van het type incident.
+
+Traditionele monitoring bleek zeer nauwkeurig voor infrastructuur- en resourcegerelateerde problemen, zoals een hoge CPU-belasting of het onbereikbaar worden van een service. Bij problemen binnen de werking van de applicatie zelf bleek deze methode beperkter, tenzij bijkomende inhoudscontroles geconfigureerd werden.
+
+De uitgewerkte scenario’s maakten het mogelijk om enkele blind spots van traditionele monitoring zichtbaar te maken. Vooral bij databasefouten bleek dat traditionele monitoring afhankelijk was van vooraf geconfigureerde inhoudscontroles om de fout correct te detecteren. Zonder dergelijke controles zouden bepaalde functionele problemen minder zichtbaar zijn binnen de monitoringomgeving. End-to-end monitoring bood hierbij meer inzicht in de impact van het probleem op de volledige gebruikersflow.
+
+End-to-end monitoring bleek nauwkeuriger in het detecteren van functionele problemen vanuit het perspectief van de eindgebruiker. Problemen binnen de loginflow, databasefouten en performantieproblemen werden hierbij duidelijk zichtbaar tijdens de uitvoering van de gebruikersscenario’s.
+
+Daartegenover staat dat end-to-end monitoring minder geschikt bleek voor het rechtstreeks detecteren van onderliggende infrastructuurproblemen zoals CPU-belasting. Hierbij werd voornamelijk de impact op de gebruikerservaring zichtbaar, en niet de exacte oorzaak van het probleem.
+
+De proof-of-concept toont aan dat traditionele monitoring niet altijd voldoende inzicht biedt in de effectieve werking van een applicatie vanuit het perspectief van de eindgebruiker.
+
+Dit werd voornamelijk zichtbaar in de scenario’s met de databasefout en de redirectloop na login. Hoewel de webservice technisch bereikbaar bleef, functioneerde de applicatie niet correct. Traditionele monitoring detecteerde hierbij voornamelijk de technische toestand van de service, terwijl end-to-end monitoring aantoonde dat de gebruikersflow niet meer correct uitgevoerd kon worden.
+
+Ook bij performantieproblemen bleek dat traditionele monitoring wel responstijden kan meten, maar minder inzicht biedt in welke specifieke stap binnen de gebruikersinteractie problemen veroorzaakt.
+
+De resultaten tonen daardoor aan dat end-to-end monitoring een waardevolle aanvulling vormt op traditionele monitoring, aangezien deze methode bijkomend inzicht geeft in de effectieve gebruikerservaring en de functionele werking van de applicatie.
+
+Op basis van de uitgevoerde scenario’s kunnen enkele algemene conclusies worden getrokken.
+
+Traditionele monitoring is zeer geschikt voor het detecteren van infrastructuurproblemen en het opvolgen van systeemparameters. Deze methode biedt een duidelijk overzicht van de technische toestand van de omgeving.
+
+End-to-end monitoring richt zich daarentegen op de gebruikerservaring en de correcte werking van de applicatie. Problemen worden gedetecteerd op het moment dat ze effectief impact hebben op de gebruiker.
+
+Beide vormen van monitoring vullen elkaar aan. Waar traditionele monitoring inzicht biedt in de oorzaak van problemen, toont end-to-end monitoring de impact ervan op de applicatie en de eindgebruiker.
+
+De verschillende scenario’s werden meerdere keren uitgevoerd binnen dezelfde testomgeving om consistente observaties te verkrijgen. Hierdoor konden de resultaten van beide monitoringmethoden herhaaldelijk geobserveerd en vergeleken worden.
+
+\subsection{Impact op operationele KPI's}
+
+De uitgevoerde scenario’s tonen aan dat beide monitoringmethoden een verschillende invloed hebben op de operationele KPI’s: MTTD, MTTR en availability.
+
+Aangezien zowel de traditionele monitoringchecks als de Robotmk-tests periodiek en automatisch uitgevoerd werden, bleef de detectietijd van incidenten in beide gevallen beperkt. Hierdoor was het verschil in MTTD tussen beide monitoringmethoden relatief klein binnen deze proof-of-concept.
+
+De detectietijd was hierbij voornamelijk afhankelijk van het ingestelde controle-interval van de monitoringchecks.
+
+Hoewel binnen de proof-of-concept geen exacte MTTR-metingen werden uitgevoerd, bleek wel dat end-to-end monitoring meer context bood over de oorzaak en locatie van incidenten. Hierdoor konden problemen eenvoudiger geanalyseerd worden. End-to-end monitoring bood meer context over de effectieve impact van een probleem op de applicatie en de gebruikersflow. Dankzij de gedetailleerde testlogs kon sneller bepaald worden waar binnen de applicatie zich een probleem voordeed, wat de analyse en mogelijke oplossing van incidenten kan versnellen.
+Dit werd vooral zichtbaar bij functionele fouten binnen de loginflow, waarbij traditionele monitoring geen probleem detecteerde terwijl end-to-end monitoring onmiddellijk aantoonde waar de gebruikersflow faalde.
+
+Daarnaast bleek dat traditionele monitoring sterk is in het controleren of services en infrastructuur bereikbaar blijven. End-to-end monitoring controleert daarentegen of de applicatie ook effectief correct blijft werken voor de eindgebruiker.
+
+Binnen de proof-of-concept werden zowel traditionele monitoringchecks als end-to-end tests periodiek uitgevoerd met een interval van vijf minuten. Hierdoor werd de theoretische maximale detectietijd grotendeels bepaald door het ingestelde monitoringinterval. Tijdens de scenario’s konden vooral verschillen geobserveerd worden in zichtbaarheid van incidenten, analyse van fouten en impact op de gebruikerservaring.
+
+\begin{table}[H]
+    \centering
+    \small
+    \begin{tabular}{|p{4cm}|p{5cm}|p{5cm}|}
+        \hline
+        \textbf{Scenario} & \textbf{Traditionele monitoring} & \textbf{End-to-end monitoring} \\ \hline
+        Uitval webapplicatie & Technische detectie & Gebruikersflow faalt \\ \hline
+        Databasefout & Fout zichtbaar via check & Fout zichtbaar tijdens login \\ \hline
+        Trage webapplicatie & Responstijd zichtbaar & Gebruikersimpact zichtbaar \\ \hline
+        Hoge CPU-belasting & CPU-probleem zichtbaar & Enkel zichtbaar bij impact \\ \hline
+        Verlies DB-connectie & Fout zichtbaar via checks & Fout zichtbaar in loginflow \\ \hline
+        Redirectloop login & Niet gedetecteerd & Correct gedetecteerd \\ \hline
+    \end{tabular}
+    \caption{Vergelijking van observaties tijdens de proof-of-concept}
+    \label{tab:poc_observaties}
+\end{table}
+
+\subsection{Relevantie voor verschillende eindgebruikers}
+
+Zowel traditionele monitoring als end-to-end monitoring zijn relevant voor verschillende betrokken partijen binnen een IT-omgeving.
+
+Voor eindgebruikers van de applicatie is het belangrijk dat de applicatie correct functioneert en een goede gebruikerservaring biedt. Problemen zoals trage laadtijden, foutmeldingen of mislukte loginpogingen hebben een directe impact op het gebruik van de applicatie. End-to-end monitoring speelt hier een belangrijke rol doordat deze methode de werking van de applicatie controleert vanuit het perspectief van de gebruiker.
+
+Daarnaast zijn ook systeembeheerders en operationele IT-teams belangrijke eindgebruikers van de monitoringomgeving. Zij zijn verantwoordelijk voor het operationeel houden van de infrastructuur en de applicatie. Traditionele monitoring biedt hierbij waardevolle informatie over systeemparameters, services en infrastructuurproblemen zoals CPU-belasting, netwerkproblemen of onbereikbare services.
+
+De resultaten van deze proof-of-concept tonen aan dat beide monitoringmethoden elkaar aanvullen. Traditionele monitoring biedt inzicht in de technische oorzaak van problemen, terwijl end-to-end monitoring de impact ervan op de gebruikerservaring zichtbaar maakt.
+
+Dit maakt een gecombineerde aanpak noodzakelijk in complexe IT-omgevingen.

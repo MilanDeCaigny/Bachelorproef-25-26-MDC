@@ -36,7 +36,6 @@
 \IfLanguageName{english}{%
 \selectlanguage{dutch}
 \chapter*{Samenvatting}
-\lipsum[1-4]
 \selectlanguage{english}
 }{}
 
@@ -45,4 +44,15 @@
 
 \chapter*{\IfLanguageName{dutch}{Samenvatting}{Abstract}}
 
-\lipsum[1-4]
+
+In moderne IT-omgevingen, zoals binnen het havenlandschap, speelt monitoring een cruciale rol in het tijdig detecteren en oplossen van incidenten. Traditionele monitoringoplossingen focussen voornamelijk op infrastructuur- en per process controles, waardoor problemen op applicatieniveau niet altijd correct of tijdig worden vastgesteld. Dit kan ervoor zorgen dat fouten pas zichtbaar worden wanneer de eindgebruiker er effectief hinder van ondervindt.
+
+Deze bachelorproef onderzoekt hoe een end-to-end monitoringoplossing kan worden ontworpen en geïmplementeerd en in welke mate deze verschilt van traditionele monitoring. De centrale onderzoeksvraag luidt: hoe kan een end-to-end monitoringoplossing bijdragen aan het sneller detecteren en oplossen van IT-incidenten binnen IT-omgevingen? Hierbij wordt niet enkel gekeken naar technische detectie, maar ook naar de impact op de gebruikerservaring.
+
+Het doel van dit onderzoek is om inzicht te verkrijgen in de meerwaarde van end-to-end monitoring ten opzichte van traditionele monitoring, met bijzondere aandacht voor detectiesnelheid, nauwkeurigheid en relevantie voor de eindgebruiker. Ook wordt onderzocht in welke situaties beide monitoringvormen elkaar kunnen aanvullen.
+
+Om dit te realiseren werd een proof-of-concept opgezet waarin een webapplicatie en database werden geïmplementeerd in een gecontroleerde testomgeving. Met behulp van Checkmk en Robotmk werden verschillende scenario’s gesimuleerd, waaronder uitval van de webapplicatie, databasefouten, performantieproblemen, hoge CPU-belasting, verlies van connectiviteit tussen applicatie en database en functionele fouten binnen de loginflow. Deze scenario’s werden zowel met traditionele monitoring als met end-to-end monitoring geëvalueerd, zodat een directe vergelijking mogelijk was. Tijdens deze tests werd gebruik gemaakt van gesimuleerde gebruikersinteracties om een realistisch beeld te krijgen van de werking van de applicatie.
+
+Uit de uitgevoerde scenario’s blijkt dat traditionele monitoring sterk is in het detecteren van infrastructuurproblemen, zoals een verhoogde CPU-belasting, maar beperkingen heeft bij het identificeren van fouten binnen de applicatielogica. End-to-end monitoring biedt daarentegen meer inzicht in de gebruikerservaring en kan fouten detecteren die zich voordoen tijdens de interactie met de applicatie. Bovendien maakt end-to-end monitoring het mogelijk om nauwkeurig te bepalen op welk moment in de gebruikersflow een probleem optreedt.
+
+Op basis van deze bevindingen kan geconcludeerd worden dat end-to-end monitoring een waardevolle aanvulling vormt op traditionele monitoring. Beide benaderingen vullen elkaar aan: traditionele monitoring biedt inzicht in de onderliggende infrastructuur, terwijl end-to-end monitoring de effectieve werking van de applicatie vanuit het perspectief van de eindgebruiker evalueert. Een gecombineerde aanpak wordt dan ook aanbevolen binnen IT-omgevingen, waarbij zowel technische parameters als gebruikerservaring in rekening worden gebracht.

@@ -20,28 +20,26 @@
 %% \usepackage[chapter]{minted}
 %% If you compile with the make_thesis.{bat,sh} script, use the following
 %% import instead:
-\usepackage[chapter,outputdir=../output]{minted}
-\usemintedstyle{solarized-light}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
 
-%% Formatting for minted environments.
-\setminted{%
-    autogobble,
-    frame=lines,
-    breaklines,
-    linenos,
-    tabsize=4
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    tabsize=4,
+    captionpos=b
 }
 
 %% Ensure the list of listings is in the table of contents
-\renewcommand\listoflistingscaption{%
-    \IfLanguageName{dutch}{Lijst van codefragmenten}{List of listings}
+\renewcommand{\lstlistlistingname}{%
+    \IfLanguageName{dutch}{Lijst van codefragmenten}{List of listings}%
 }
-\renewcommand\listingscaption{%
-    \IfLanguageName{dutch}{Codefragment}{Listing}
-}
-\renewcommand*\listoflistings{%
-    \cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\listoflistingscaption}%
-    \listof{listing}{\listoflistingscaption}%
+\renewcommand{\lstlistingname}{%
+    \IfLanguageName{dutch}{Codefragment}{Listing}%
 }
 
 % Other packages not already included can be imported here
@@ -70,6 +68,8 @@
 \renewcommand{\cleardoublepage}{\clearpage}
 
 \renewcommand{\arraystretch}{1.2}
+
+\setlength{\emergencystretch}{3em}
 
 %% Content starts here.
 \begin{document}
@@ -112,7 +112,7 @@
 % lines.
 \listoftables
 
-\listoflistings
+\lstlistoflistings
 
 % Als je een lijst van afkortingen of termen wil toevoegen, dan hoort die
 % hier thuis. Gebruik bijvoorbeeld de ``glossaries'' package.
@@ -131,6 +131,9 @@
 \input{inleiding}
 \input{standvanzaken}
 \input{methodologie}
+\input{proof-of-concept}
+\input{resultaten}
+\input{discussie}
 
 % Voeg hier je eigen hoofdstukken toe die de ``corpus'' van je bachelorproef
 % vormen. De structuur en titels hangen af van je eigen onderzoek. Je kan bv.

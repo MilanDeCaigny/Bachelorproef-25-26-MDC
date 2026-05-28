@@ -5,14 +5,21 @@
 \chapter{Conclusie}%
 \label{ch:conclusie}
 
-% TODO: Trek een duidelijke conclusie, in de vorm van een antwoord op de
-% onderzoeksvra(a)g(en). Wat was jouw bijdrage aan het onderzoeksdomein en
-% hoe biedt dit meerwaarde aan het vakgebied/doelgroep? 
-% Reflecteer kritisch over het resultaat. In Engelse teksten wordt deze sectie
-% ``Discussion'' genoemd. Had je deze uitkomst verwacht? Zijn er zaken die nog
-% niet duidelijk zijn?
-% Heeft het onderzoek geleid tot nieuwe vragen die uitnodigen tot verder 
-%onderzoek?
+Deze bachelorproef onderzocht hoe een end-to-end monitoringoplossing kan worden ontworpen en geïmplementeerd om IT-incidenten tijdig te detecteren en sneller te analyseren binnen complexe IT-omgevingen.
 
-\lipsum[76-80]
+Op basis van de literatuurstudie en de uitgewerkte proof-of-concept kan geconcludeerd worden dat end-to-end monitoring een duidelijke meerwaarde biedt ten opzichte van uitsluitend traditionele monitoring. Traditionele monitoring bleek vooral sterk in het opvolgen van technische componenten, zoals services, responstijden, CPU-belasting en databaseconnectiviteit. Deze methode biedt systeembeheerders een snel inzicht in de technische toestand van de omgeving.
+
+End-to-end monitoring bleek daarentegen vooral waardevol voor het bekijken van de applicatie vanuit het perspectief van de eindgebruiker. Via Robotmk konden volledige gebruikersflows automatisch uitgevoerd worden. Hierdoor werden functionele problemen zichtbaar die bij traditionele monitoring niet onmiddellijk gedetecteerd werden.
+
+De proof-of-concept toont aan dat end-to-end monitoring vooral bijdraagt aan het sneller herkennen van problemen die impact hebben op de gebruikerservaring. Daarnaast geven de testlogs meer context over de stap binnen de gebruikersflow waar een probleem optreedt. Dit kan de analyse van incidenten ondersteunen en zo bijdragen aan een kortere MTTR.
+
+Tegelijkertijd toont het onderzoek aan dat end-to-end monitoring traditionele monitoring niet vervangt. Bij infrastructuurproblemen, zoals hoge CPU-belasting, gaf traditionele monitoring duidelijker inzicht in de technische oorzaak van het probleem. End-to-end monitoring toont in zulke gevallen vooral de impact op de gebruiker, maar niet noodzakelijk de onderliggende oorzaak.
+
+Het antwoord op de centrale onderzoeksvraag is daarom dat een end-to-end monitoringoplossing vooral waardevol is wanneer deze gecombineerd wordt met traditionele monitoring. Door beide benaderingen samen te gebruiken, ontstaat een vollediger beeld van de IT-omgeving: traditionele monitoring toont wat er technisch fout loopt, terwijl end-to-end monitoring toont of en hoe de eindgebruiker hinder ondervindt.
+
+De bijdrage van deze bachelorproef ligt in het aantonen van deze complementariteit aan de hand van een werkende proof-of-concept. De uitgevoerde scenario’s tonen aan dat een gecombineerde aanpak organisaties kan helpen om incidenten niet alleen sneller te detecteren, maar ook gerichter te analyseren.
+
+Dit onderzoek kent ook beperkingen. De proof-of-concept werd uitgevoerd in een beperkte testomgeving met twee virtuele machines, een eenvoudige webapplicatie en zes gesimuleerde scenario’s. Daardoor kunnen de resultaten niet volledig veralgemeend worden naar grote productieomgevingen met meerdere applicaties, microservices of cloudinfrastructuren.
+
+Voor vervolgonderzoek kan deze proof-of-concept uitgebreid worden naar complexere omgevingen. Daarbij kan onderzocht worden hoe end-to-end monitoring gecombineerd kan worden met distributed tracing, artificiële intelligentie of automatische remediatie. Op die manier kan verder onderzocht worden hoe monitoring niet alleen incidenten detecteert, maar ook actief kan bijdragen aan snellere en meer geautomatiseerde probleemoplossing.
 
